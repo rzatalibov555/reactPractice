@@ -4,10 +4,11 @@ import Layout from './components/layout/Layout';
 
 import CHF from './image/CHF.png'
 import AZE from './image/Flag_of_Azerbaijan.svg.png'
-import JYP from './image/GPY.png'
-import AZN from './image/AZN.webp'
-import USD from './image/dollar.png'
-import EUR from './image/eur.png'
+import JYP from './image/JPY.png'
+import USD from './image/usa.png'
+import EUR from './image/euro.png'
+
+import { RateContext } from './context/RateContext';
 
 class App extends React.Component{
 
@@ -19,10 +20,12 @@ class App extends React.Component{
         rate:"",
         date:"",
         currency: {
-          USD: {name: "Dollar", flag: USD, course: "1.70"},
-          EURO: {name: "EURO", flag: EUR, course: "1.70"},
-          AZN: {name: "MANAT", flag: AZN, course: "1.70"},
-        }
+                    USD: {name: "Dollar", flag: USD, course: "1.70"},
+                    EURO:{name: "Evro",   flag: EUR, course: "1.70"},
+                    AZN: {name: "Manat",  flag: AZE, course: "1.70"},
+                    CHF: {name: "İsveçrə frankı",  flag: CHF, course: "1.70"},
+                    JPY: {name: "Yaponiya yenasi",  flag: JYP, course: "1.70"},
+                  }
     };
 
 
@@ -32,7 +35,10 @@ class App extends React.Component{
 
   render() {
     return (
-        <Layout/>
+        <RateContext.Provider value={{ state:this.state }}>
+          <Layout/>
+        </RateContext.Provider>
+        
     )
   };
 
